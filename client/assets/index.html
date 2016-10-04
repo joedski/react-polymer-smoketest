@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    // Setup Polymer options
+    window.Polymer = {
+      // lazyRegister: true, // lazyRegister: true is necessary for px-view
+      // dom: 'shadow' // default to shadow-dom with shady-dom fall-back
+    };
+  </script>
+
+	<!-- React-Polymer complains about Polymer not being loaded if you don't explicitly load it first.
+		However, I'm not sure how important that is given it only complains about
+		the lack of a Polymer.dom setting. -->
+  <link
+    id="polymer-import"
+    rel="import"
+    href="./bower_components/polymer/polymer.html"
+    async>
+
+  <!-- Loading the rest of the components async like this means we can show a loading screen immediately. -->
+  <link
+    id="main-element-import"
+    rel="import"
+    href="./component-imports/component-imports.html"
+    async>
+</head>
+<body>
+  <div id="app-container"></div>
+
+  <!-- Loader is tiny right now, but may need to include a Promise shim just in case. -->
+  <script src="./loader.js"></script>
+</body>
+</html>
