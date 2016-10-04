@@ -1,3 +1,7 @@
+/**
+ * This is kept here for historical purposes to show what I came up with and why.
+ */
+
 import ReactPolymer from 'react-polymer';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';

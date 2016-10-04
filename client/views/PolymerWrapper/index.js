@@ -51,6 +51,15 @@ export default class PolymerWrapper extends React.Component {
     this.polymerComponents = new Map();
   }
 
+  /**
+   * Creates a RefFunction to bind events to a Polymer Component,
+   * that RefFunction which then handles actually binding event handlers via
+   * Element#addEventListener.
+   *
+   * @param  {String} The internal id to use for this binding.  Should be unique in this instance.
+   * @param  {{[EventName: String]: Function EventHandler(Event) }} Object mapping event names to handlers.
+   * @return {Function RefFunction(Ref)} The RefFunction actually used in React's @ref.
+   */
   polymerEvents( componentName, events ) {
     return ref => {
       let has = key => this.polymerComponents.has( key );
