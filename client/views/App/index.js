@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 // Twiddling such on the DOM didn't work, and the Polymer docs state
 // that you have to do addEventListener for these events too,
 // so it's probably restricted to that.
-// ReactPolymer.registerEvent( 'selected-key-changed', { onSelectedKeyChanged: true }, { onSelectedKeyChangedCapture: true });
+ReactPolymer.registerEvent( 'selected-key-changed', { onSelectedKeyChanged: true }, { onSelectedKeyChangedCapture: true });
 
 class App extends React.Component {
 	// This feels backboneish.
@@ -18,7 +18,7 @@ class App extends React.Component {
 		// How annoying.
 		// Also, not sure why this didn't work in ealier tests.
 		this.dropdown.addEventListener( 'selected-key-changed', event => {
-			console.log( event.target.selectedKey );
+			console.log( 'selected-key-changed:', event.target.selectedKey );
 		});
 	}
 
@@ -43,7 +43,14 @@ class App extends React.Component {
 				<px-dropdown
 					display-value="Bibblybop"
 					selected-key="3"
-					ref={ ref => { this.dropdown = ref; }}>
+					ref={ ref => { this.dropdown = ref; }}
+					// Although it seems like it should work based on their example,
+					// I can't get this to work here.
+					// Only manually calling addEventListener seems to work.  Alas.
+					onSelectedKeyChanged={ event => {
+						console.log( 'onSelectedKeyChanged:', event.target.selectedKey );
+					}}
+					>
 					<px-dropdown-content
 						items={ itemsJSON }/>
 				</px-dropdown>
