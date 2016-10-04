@@ -54,13 +54,15 @@ class App extends React.Component {
 				<px-dropdown
 					display-value={ selectedName }
 					selected-key={ selectedApp.id }
-					ref={ ref => { this.dropdown = ref; }}
+					ref={ ref => {
+						this.dropdown = ref;
+					}}
 					// Although it seems like it should work based on the react-polymer example,
 					// I can't get this to work here.
 					// Only manually calling addEventListener seems to work.  Alas.
-					// onSelectedKeyChanged={ event => {
-					// 	console.log( 'onSelectedKeyChanged:', event.target.selectedKey );
-					// }}
+					onSelectedKeyChanged={ event => {
+						console.log( 'onSelectedKeyChanged:', event.target.selectedKey );
+					}}
 					>
 					<px-dropdown-content
 						items={ itemsJSON }/>
