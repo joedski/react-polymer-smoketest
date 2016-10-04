@@ -20,7 +20,7 @@ React-Polymer only works with actual declared events, I guess, however `{prop}-c
 
 The big problem is that you can't even attach the `{prop}-changed` events through attrs in Polymer, it states you have to use `addEventListener` there.
 
-Take a look at the `paper-inputs` to see if they differ somehow from how the `px-things` are setup.
+Take a look at the `paper-inputs` to see if they differ somehow from how the `px-things` are setup, and see if that's why Polymer-React can bind it just using props rather than refs.  Also, check if it matters where I call `reactPolymer.registerEvent`.  I don't know why it should matter, but maybe it does?
 
 This can probably be eased in a React Class, though, but that adds some complication.  Still, it'd be necessary when handling list items anyway.
 
