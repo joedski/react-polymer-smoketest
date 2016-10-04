@@ -1,5 +1,5 @@
 
-import ReactPolymer 'react-polymer'; // Must be imported before React.
+import ReactPolymer from 'react-polymer'; // Must be imported before React.
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
