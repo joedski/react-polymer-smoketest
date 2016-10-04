@@ -1,3 +1,41 @@
+/**
+ * PolymerWrapper eases binding event listeners to Polymer Component events,
+ * primarily notify ({prop}-changed) events.
+ * Since they need to be listened to via addEventListener and
+ * ReactPolymer doesn't seem to be able to tell React that it should do this with such events,
+ * this class uses a ref helper function to handle this case instead.
+ *
+ * Usage:
+ *  render() {
+ *    return (
+ *      <some-polymer-element
+ *        some-value={this.props.foo}
+ *        ref={this.polymerEvents(`somePolymerElement`, {
+ *          'some-value-changed': event => {
+ *            this.onSomeValueChanged( event.target.value )
+ *          }
+ *        })}/>
+ *    );
+ *  }
+ *
+ * Usage with iterated items:
+ *  render() {
+ *    return (
+ *      <div className="items">
+ *        {this.props.someArray.map(someItem => (
+ *          <some-polymer-element
+ *            key={someItem.id}
+ *            some-value={someItem.foo}
+ *            ref={this.polymerEvents(`somePolymerElement#${someItem.id}`, {
+ *              'some-value-changed': event => {
+ *                this.onSomeItemValueChanged(someItem.id, event.target.value)
+ *              }
+ *            })}/>
+ *        ))}
+ *      </div>
+ *    );
+ *  }
+ */
 
 import React from 'react';
 
