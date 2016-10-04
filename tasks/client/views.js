@@ -4,7 +4,7 @@
 // const vinylSourceStream = require( 'vinyl-source-stream' );
 // const vinylBuffer = require( 'vinyl-buffer' );
 
-const bundleScript = require( './util/bundle' )( 'client/index.js' );
+const bundleScript = require( './util/bundle' )( 'client/index.js', 'app.js' );
 
 
 

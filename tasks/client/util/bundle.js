@@ -4,7 +4,7 @@ const browserify = require( 'browserify' );
 const vinylSourceStream = require( 'vinyl-source-stream' );
 const vinylBuffer = require( 'vinyl-buffer' );
 
-module.exports = ( src, dest ) => ( gulp, plugins, watch ) => {
+module.exports = ( src, destName, dest ) => ( gulp, plugins, watch ) => {
 	dest = dest || 'public';
 
 	let bundler = browserify(
@@ -45,7 +45,7 @@ module.exports = ( src, dest ) => ( gulp, plugins, watch ) => {
 				if( err.codeFrame ) console.error( err.codeFrame );
 				this.emit( 'end' );
 			})
-			.pipe( vinylSourceStream( 'loader.js' ) )
+			.pipe( vinylSourceStream( destName ) )
 			.pipe( vinylBuffer() )
 			;
 

@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
 import ReactPolymer from 'react-polymer';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import * as Actions from '../../store/actions';
 
 // Doesn't seem to work with polymer's notify events.
 // I'm not sure if that can be made to work from the attributes.
@@ -19,6 +20,7 @@ class App extends React.Component {
 		// Also, not sure why this didn't work in ealier tests.
 		this.dropdown.addEventListener( 'selected-key-changed', event => {
 			console.log( 'selected-key-changed:', event.target.selectedKey );
+			this.onSelectApp( event.target.selectedKey );
 		});
 	}
 
@@ -32,19 +34,25 @@ class App extends React.Component {
 	// Real question is whether or not that's actually worth making a thing.
 
 	render() {
-		let itemsJSON = JSON.stringify([
-			{ key: '1', val: "Beep" },
-			{ key: '2', val: "Booper" },
-			{ key: '3', val: "Bibblybop" },
-		]);
+		// let itemsJSON = JSON.stringify([
+		// 	{ key: '1', val: "Beep" },
+		// 	{ key: '2', val: "Booper" },
+		// 	{ key: '3', val: "Bibblybop" },
+		// ]);
+
+		let itemsJSON = JSON.stringify(
+			this.props.apps.map( a => ({
+				key: a.id, val: a.name
+			}))
+		);
 
 		return (
 			<div className="do-something">
 				<px-dropdown
-					display-value="Bibblybop"
-					selected-key="3"
+					display-value={ this.props.apps.find( a => a.id === this.props.selectedAppId ) }
+					selected-key={ this.props.selectedAppId }
 					ref={ ref => { this.dropdown = ref; }}
-					// Although it seems like it should work based on their example,
+					// Although it seems like it should work based on the react-polymer example,
 					// I can't get this to work here.
 					// Only manually calling addEventListener seems to work.  Alas.
 					onSelectedKeyChanged={ event => {
@@ -62,8 +70,11 @@ class App extends React.Component {
 const mapState = state => ({
 	apps: state.apps,
 	user: state.user,
+	selectedAppId: state.selection.selectedAppId
 });
 
-const mapDispatch = dispatch => ({});
+const mapDispatch = dispatch => ({
+	onSelectApp: appId => dispatch( Actions.selectApp( appId ) )
+});
 
 export default connect( mapState, mapDispatch )( App );

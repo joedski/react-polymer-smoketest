@@ -13,6 +13,24 @@ A simple test bed for our app.
 
 
 
+Build Process
+-------------
+
+There are a few different parts.
+- React is usually compiled using a bundler such as Webpack or Browserify.  The latter is used here.
+	- We're using ES6 and JSX to follow standard React practices.
+	- Stage 0 is used for the spread operator and some other niceties, but babel-shim is NOT included.
+- Web Components can be compiled/bundled via Vulcanize, but don't need to be during dev.
+- Some things may be inlineable, using `gulp-inline`.  This can be used to reduce requests or do some basic bundling in non-HTTP2 builds.
+- The Predix Seed App uses Sass for variables, so gulp-sass is included.  Further processing is handled by postcss and it's friends.
+	- Currently, only cssnano is used, but maybe in the future we'll want autoprefixer?
+
+Considerations:
+- We should probably shim in some/all ES5 features.
+	- The loader currently assumes the presence of Promise, though it could be rewritten into callback form.
+
+
+
 Analysis
 --------
 

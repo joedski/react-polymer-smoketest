@@ -1,19 +1,30 @@
 
+import * as Actions from '../actions';
+
 function initialState() {
 	return {
-		apps: [
-			{ id: '1', name: "Fancy App", rating: 5, description: "This is a super fancy app." },
-			{ id: '2', name: "Old App", rating: 1, description: "This is an old rickety app." },
-			{ id: '3', name: "Another App", rating: 3, description: "It works, but it could be better." },
-		],
+		apps: [],
 		user: {
-			name: "Gratia Example"
+			name: ""
+		},
+		selection: {
+			selectedAppId: ''
 		}
 	};
 }
 
 const reducer = ( state = initialState(), action ) => {
 	switch( action.type ) {
+		case Actions.SELECT_APP: {
+			return {
+				...state,
+				selection: {
+					...state.selection,
+					selectedAppId: action.payload.appId
+				}
+			};
+		}
+
 		default: return state;
 	}
 }
