@@ -1,12 +1,12 @@
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore /* , applyMiddleware */ } from 'redux';
 import reducer from './reducers';
 
-export function configureStore( hydrationData = null ) {
-  let applyDevTools = window.devToolsExtension ? window.devToolsExtension() : a => a;
+export default (hydrationData = null) => {
+  const applyDevTools = window.devToolsExtension ? window.devToolsExtension() : a => a;
 
-  let enhancer = store =>
-    applyDevTools( store )
+  const enhancer = store =>
+    applyDevTools(store)
     ;
 
   // let enhancer = store =>
@@ -18,10 +18,10 @@ export function configureStore( hydrationData = null ) {
   // let hydration = {};
 
   // let store = createStore( reducer, hydration, enhancer );
-  let store = hydrationData
-    ? createStore( reducer, hydrationData, enhancer )
-    : createStore( reducer, enhancer )
+  const store = hydrationData
+    ? createStore(reducer, hydrationData, enhancer)
+    : createStore(reducer, enhancer)
     ;
 
   return store;
-}
+};
