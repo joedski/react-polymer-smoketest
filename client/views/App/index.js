@@ -39,7 +39,7 @@ class App extends PolymerWrapper {
         {this.appDropdown( 'dropdown', event => {
           console.log( `dropdown => ${event.target.selectedKey}` );
           this.props.onSelectApp( event.target.selectedKey );
-        } )}
+        })}
 
         <div className="items">
           {[0,1,2].map(index => (

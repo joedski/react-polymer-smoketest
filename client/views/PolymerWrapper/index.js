@@ -35,6 +35,11 @@
  *      </div>
  *    );
  *  }
+ *
+ * Note that there's no additional parameters, just that the name is built
+ * using some item key, probably the same one you use for the @key attr.
+ *
+ * Note also that you don't have to use a # in there.  The names are completely arbitrary.
  */
 
 import React from 'react';
@@ -70,12 +75,12 @@ export default class PolymerWrapper extends React.Component {
     this.addPolymerEventListeners( componentName, events, ref );
   }
 
-  updatePolymerComponent( componentName, events, ref ) {
+  updatePolymerComponent( componentName, events /*ref*/ ) {
     let componentDef = this.polymerComponents.get( componentName );
     componentDef.events = events;
   }
 
-  unregisterPolymerComponent( componentName, events, ref ) {
+  unregisterPolymerComponent( componentName, events /*ref*/ ) {
     let componentDef = this.polymerComponents.get( componentName );
     let actualRef = componentDef.ref;
 
