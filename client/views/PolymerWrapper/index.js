@@ -58,7 +58,7 @@ export default class PolymerWrapper extends React.Component {
         this.registerPolymerComponent( componentName, events, ref );
       }
       else if( ! ref && has( componentName ) ) {
-        this.unregisterPolymerComponent( componentName, events, ref );
+        this.unregisterPolymerComponent( componentName, events );
       }
       else if( ref && has( componentName ) ) {
         this.updatePolymerComponent( componentName, events, ref );
@@ -66,52 +66,53 @@ export default class PolymerWrapper extends React.Component {
     };
   }
 
-  registerPolymerComponent( componentName, events, ref ) {
+  registerPolymerComponent( componentName, handlers, ref ) {
     this.polymerComponents.set( componentName, {
       ref,
-      events
+      handlers,
+      dispatchers: null
     });
 
-    this.addPolymerEventListeners( componentName, events, ref );
+    this.addPolymerEventListeners( componentName, handlers, ref );
   }
 
-  updatePolymerComponent( componentName, events /*ref*/ ) {
+  updatePolymerComponent( componentName, handlers /*, ref*/ ) {
     let componentDef = this.polymerComponents.get( componentName );
-    componentDef.events = events;
+    componentDef.handlers = handlers;
   }
 
-  unregisterPolymerComponent( componentName, events /*ref*/ ) {
-    let componentDef = this.polymerComponents.get( componentName );
-    let actualRef = componentDef.ref;
+  unregisterPolymerComponent( componentName, handlers ) {
+    // let componentDef = this.polymerComponents.get( componentName );
+    // let actualRef = componentDef.ref;
 
     // TODO: Do we actually need to remove event listeners when an element is being removed?
-    this.removePolymerEventListeners( componentName, events, actualRef );
+    this.removePolymerEventListeners( componentName, handlers );
     this.polymerComponents.delete( componentName );
   }
 
-  addPolymerEventListeners( componentName, events, ref ) {
+  addPolymerEventListeners( componentName, handlers, ref ) {
     let componentDef = this.polymerComponents.get( componentName );
-    let handlers = componentDef.handlers = componentDef.handlers || {};
+    let dispatchers = componentDef.dispatchers = componentDef.dispatchers || {};
 
-    Object.keys( events ).forEach( eventName => {
-      handlers[ eventName ] = event => this.dispatchPolymerRefEvent( componentName, eventName, event );
-      ref.addEventListener( eventName, handlers[ eventName ] );
+    Object.keys( handlers ).forEach( eventName => {
+      dispatchers[ eventName ] = event => this.dispatchPolymerRefEvent( componentName, eventName, event );
+      ref.addEventListener( eventName, dispatchers[ eventName ] );
     });
   }
 
-  removePolymerEventListeners( componentName, events, ref ) {
+  removePolymerEventListeners( componentName, handlers ) {
     let componentDef = this.polymerComponents.get( componentName );
-    let { handlers } = componentDef;
+    let { dispatchers, ref } = componentDef;
 
-    Object.keys( events ).forEach( eventName => {
-      ref.removeEventListener( eventName, handlers[ eventName ] );
+    Object.keys( handlers ).forEach( eventName => {
+      ref.removeEventListener( eventName, dispatchers[ eventName ] );
     });
   }
 
   dispatchPolymerRefEvent( componentName, eventName, event ) {
     let componentDef = this.polymerComponents.get( componentName );
-    let { events } = componentDef;
+    let { handlers } = componentDef;
 
-    return events[ eventName ]( event );
+    return handlers[ eventName ]( event );
   }
 }

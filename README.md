@@ -13,6 +13,13 @@ A simple test bed for our app.
 
 
 
+Installation
+------------
+
+Download, cd into, then `npm install && bower update`.
+
+
+
 Build Process
 -------------
 
@@ -21,9 +28,13 @@ There are a few different parts.
 	- We're using ES6 and JSX to follow standard React practices.
 	- Stage 0 is used for the spread operator and some other niceties, but babel-shim is NOT included.
 - Web Components can be compiled/bundled via Vulcanize, but don't need to be during dev.
+	- Promise are available via webcomponent and can be imported that way.
 - Some things may be inlineable, using `gulp-inline`.  This can be used to reduce requests or do some basic bundling in non-HTTP2 builds.
 - The Predix Seed App uses Sass for variables, so gulp-sass is included.  Further processing is handled by postcss and it's friends.
-	- Currently, only cssnano is used, but maybe in the future we'll want autoprefixer?
+	- Some postcss things:
+		- autoprefixer
+		- ... some shortcut niceties.
+		- cssnano
 
 Considerations:
 - We should probably shim in some/all ES5 features.
