@@ -17,7 +17,7 @@
     "es6-promise": "3.2.2",
     "lodash": "4.6.1",
     "polymer": "1.4.0",
-    "px-dropdown": "https://github.com/PredixDev/px-dropdown.git",
+    "px-dropdown": "https://github.com/PredixDev/px-dropdown.git#0.12.2",
     "px": "https://github.com/PredixDev/px.git",
     "q": "^1.0.0"
   },
