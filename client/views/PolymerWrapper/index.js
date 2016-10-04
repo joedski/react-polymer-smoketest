@@ -82,9 +82,6 @@ export default class PolymerWrapper extends React.Component {
   }
 
   unregisterPolymerComponent( componentName, handlers ) {
-    // let componentDef = this.polymerComponents.get( componentName );
-    // let actualRef = componentDef.ref;
-
     // TODO: Do we actually need to remove event listeners when an element is being removed?
     this.removePolymerEventListeners( componentName, handlers );
     this.polymerComponents.delete( componentName );
