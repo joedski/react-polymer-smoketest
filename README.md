@@ -24,8 +24,6 @@ Take a look at the `paper-inputs` to see if they differ somehow from how the `px
 
 This can probably be eased in a React Class, though, but that adds some complication.  Still, it'd be necessary when handling list items anyway.
 
-This is certainly a mark against adding React here.
-
 
 
 Loading Process
