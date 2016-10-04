@@ -12,7 +12,7 @@
  *        some-value={this.props.foo}
  *        ref={this.polymerEvents(`somePolymerElement`, {
  *          'some-value-changed': event => {
- *            this.onSomeValueChanged( event.target.value )
+ *            this.onSomeValueChanged( event.currentTarget.value )
  *          }
  *        })}/>
  *    );
@@ -28,7 +28,7 @@
  *            some-value={someItem.foo}
  *            ref={this.polymerEvents(`somePolymerElement#${someItem.id}`, {
  *              'some-value-changed': event => {
- *                this.onSomeItemValueChanged(someItem.id, event.target.value)
+ *                this.onSomeItemValueChanged(someItem.id, event.currentTarget.value)
  *              }
  *            })}/>
  *        ))}
