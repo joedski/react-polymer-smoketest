@@ -8,9 +8,9 @@ import app from '../scaffolding/app';
 // scaffold.then( app );
 
 Promise.all([
-	webcomponents,
-	componentImports,
-	polymerImports,
+  webcomponents,
+  componentImports,
+  polymerImports,
 ])
-.then( app )
+.then(app)
 ;

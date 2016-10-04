@@ -4,6 +4,9 @@
   "description": "Testing React and Polymer and React-Polymer",
   "main": "public/index.html",
   "scripts": {
+    "start": "http-server",
+    "gulp": "gulp",
+    "lint": "eslint ./client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -11,7 +14,10 @@
     "polymer",
     "react-polymer"
   ],
-  "author": "Joseph Sikorski <joedski@gmail.com>",
+  "contributors": [
+    "Joseph Sikorski <joedski@gmail.com>",
+    "Wes Moberly <wesm87@gmail.com>"
+  ],
   "license": "ISC",
   "dependencies": {
     "react": "^15.3.2",
@@ -24,7 +30,10 @@
     "babel": "^6.5.2",
     "babel-cli": "^6.16.0",
     "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
+    "babel-preset-es2016": "^6.16.0",
+    "babel-preset-es2017": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babelify": "^7.3.0",
@@ -34,7 +43,12 @@
     "cssnano": "^3.7.6",
     "envify": "^3.4.1",
     "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
     "gulp": "^3.9.1",
+    "gulp-di": "0.0.33",
     "gulp-if": "^2.0.1",
     "gulp-load-plugins": "^1.3.0",
     "gulp-postcss": "^6.2.0",
@@ -42,6 +56,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
+    "http-server": "^0.9.0",
     "rimraf": "^2.5.4",
     "uglifyify": "^3.0.3",
     "vinyl-buffer": "^1.0.0",
