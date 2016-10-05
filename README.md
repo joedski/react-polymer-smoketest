@@ -16,7 +16,7 @@ A simple test bed for our app.
 Installation
 ------------
 
-Download, cd into, then `npm install && bower update`.
+Download, cd into, then `npm run install && npm run build`.
 
 
 
