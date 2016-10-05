@@ -5,6 +5,9 @@
  * ReactPolymer doesn't seem to be able to tell React that it should do this with such events,
  * this class uses a ref helper function to handle this case instead.
  *
+ * This is only necessary when you need to bind to events.  If you're just setting
+ * attributes, you don't need to bother.
+ *
  * Usage:
  *  render() {
  *    return (
