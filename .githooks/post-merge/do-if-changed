@@ -10,4 +10,4 @@ do_if_changed() {
 
 do_if_changed 'package.json' 'npm install'
 do_if_changed 'bower.json' 'bower install'
-do_if_changed 'client' 'gulp client'
+do_if_changed 'client' 'npm run build'
