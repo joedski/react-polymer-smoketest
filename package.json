@@ -6,7 +6,9 @@
   "scripts": {
     "start": "http-server",
     "gulp": "gulp",
-    "lint": "eslint ./client",
+    "lint": "npm run lint:prod && npm run lint:dev",
+    "lint:prod": "eslint ./client",
+    "lint:dev": "eslint ./gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
