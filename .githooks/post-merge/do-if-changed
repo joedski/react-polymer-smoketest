@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# git hook to run a command after `git pull` if a specified file was changed
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+do_if_changed() {
+  echo "$changed_files" | grep --quiet "$1" && eval "$2"
+}
+
+do_if_changed 'package.json' 'npm install'
+do_if_changed 'bower.json' 'bower install'
+do_if_changed 'client' 'gulp client'

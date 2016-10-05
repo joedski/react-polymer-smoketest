@@ -6,6 +6,7 @@
   "scripts": {
     "start": "http-server",
     "gulp": "gulp",
+    "build": "gulp client",
     "lint": "npm run lint:prod && npm run lint:dev",
     "lint:prod": "eslint ./client",
     "lint:dev": "eslint ./gulp",
@@ -49,6 +50,7 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
+    "git-hooks": "^1.1.6",
     "gulp": "^3.9.1",
     "gulp-di": "0.0.33",
     "gulp-if": "^2.0.1",
