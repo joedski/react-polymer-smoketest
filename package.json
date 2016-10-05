@@ -7,7 +7,7 @@
     "start": "http-server",
     "gulp": "gulp",
     "build": "gulp client",
-    "install": "npm install && bower install",
+    "install-deps": "npm install && bower install",
     "lint": "npm run lint:prod && npm run lint:dev",
     "lint:prod": "eslint ./client",
     "lint:dev": "eslint ./gulp",
